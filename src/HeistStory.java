@@ -70,7 +70,7 @@ public class HeistStory {
         }
         return tasks;
     }
-    public String GoM(String person){
+    public String firstKillChoice(String person){
         String law="";
         if(Objects.equals(person,"manager")&&checkPhrase(person,"manager")){
             law="The guards take you out. Guess you should've taken out the guards first.";
@@ -141,7 +141,7 @@ public class HeistStory {
         }
         return decide;
     }
-    public String sneak(String sneaky){
+    public String handleMoney(String sneaky){
         count++;
         outcome=sneaky;
         String now;
@@ -210,7 +210,7 @@ public class HeistStory {
             return "Wrong spelling. enter role again";
         }
     }
-    public String MoG(String which){
+    public String gunOrMach(String which){
         count++;
         String MoG;
         if(which.equals("gun")){
@@ -222,7 +222,7 @@ public class HeistStory {
         }
         return MoG;
     }
-    public String choiceGun(String choice){
+    public String choiceHostage(String choice){
         count++;
         String noOrYes="";
         if(choice.equals("yes")) {
@@ -234,7 +234,7 @@ public class HeistStory {
         }
         return noOrYes;
     }
-    public String killOption(String kill){
+    public String directionOption(String kill){
         count++;
         String toBeKilled="";
         if(kill.equals("yes")){
@@ -247,7 +247,7 @@ public class HeistStory {
         }
         return toBeKilled;
     }
-    public String directions(String direct){
+    public String caught(String direct){
         count++;
         directions=direct;
         String leftSRight;

@@ -20,18 +20,18 @@ public class HeistStoryRunner {
                     System.out.println(user.role(outcomes));
                     save = user.role(outcomes);
                     robber = s.nextLine();
-                    System.out.println(user.MoG(robber));
+                    System.out.println(user.gunOrMach(robber));
                     robber = s.nextLine();
-                    save = user.MoG(robber);
-                    System.out.println(user.choiceGun(robber));
+                    save = user.gunOrMach(robber);
+                    System.out.println(user.choiceHostage(robber));
                     robber = s.nextLine();
-                    save = user.choiceGun(robber);
-                    System.out.println(user.killOption(robber));
+                    save = user.choiceHostage(robber);
+                    System.out.println(user.directionOption(robber));
                     robber = s.nextLine();
-                    save = user.killOption(robber);
-                    System.out.println(user.directions(robber));
+                    save = user.directionOption(robber);
+                    System.out.println(user.caught(robber));
                     robber = s.nextLine();
-                    save = user.killOption(robber);
+                    save = user.caught(robber);
                     System.out.println(user.choiceForFuture(robber));
                     save="Wrong spelling.enter role again";
                     outcomes = "die";
@@ -45,13 +45,21 @@ public class HeistStoryRunner {
                 if (Objects.equals(outcomes, "planner") || Objects.equals(outcomes, "random")) {
                     while (!save.equals("Wrong spelling. enter role again")) {
                     System.out.println(user.role(outcomes));
+                    save=user.role(outcomes);
                     planner = s.nextLine();
                     System.out.println(user.planPlace(planner));
                     planner = s.nextLine();
-                    System.out.println(user.sneak(planner));
+                    save=user.planPlace(planner);
+                    System.out.println(user.handleMoney(planner));
+                    save=user.handleMoney(planner);
                     planner= s.nextLine();
                     System.out.println(user.spend(planner));
+                    save=user.spend(planner);
                     System.out.println(user.finalDecision(planner));
+                        save="Wrong spelling.enter role again";
+                        outcomes = "die";
+                        System.out.println(user.toString());
+                        break;
                 }
                     outcomes = s.nextLine();
                     user.newInput(outcomes);}
@@ -60,9 +68,9 @@ public class HeistStoryRunner {
                     System.out.println(user.role(muscle));
                     muscle = s.nextLine();
                     save = user.role(muscle);
-                    System.out.println(user.GoM(muscle));
+                    System.out.println(user.firstKillChoice(muscle));
                     muscle = s.nextLine();
-                    save = user.GoM(muscle);
+                    save = user.firstKillChoice(muscle);
                     System.out.println(user.punchOrStab(muscle));
                     muscle = s.nextLine();
                     save = user.punchOrStab(muscle);
