@@ -9,9 +9,6 @@ public class HeistStory {
     public HeistStory(String outcome) {
         this.outcome=outcome;
     }
-    public void newInput(String newOutcome){
-        outcome=newOutcome;
-    }
     public String role(String hello){
         if ("random".equals(this.outcome)) {
             choice = 4;
@@ -62,7 +59,7 @@ public class HeistStory {
     }
     public String theMuscle(){
         String second="muscle";
-        String tasks="";
+        String tasks;
         if(second.equals(outcome)){
             count++;
             tasks= "You picked the muscle. you will go to the place with the robber. Will you take out the \"guards\" or the \"manager\"?";
@@ -72,7 +69,7 @@ public class HeistStory {
         return tasks;
     }
     public String firstKillChoice(String person){
-        String law="";
+        String law;
         if(Objects.equals(person,"manager")){
             law="The guards take you out. Guess you should've taken out the guards first.";
             return law;
@@ -84,7 +81,7 @@ public class HeistStory {
         return law;
     }
     public String punchOrStab(String stab){
-        String punchOStab="";
+        String punchOStab;
         count++;
         if(Objects.equals(stab,"stab")){
             punchOStab="You stab him and he bleeds to death. Their wife was present do you kill her swell?.\n(input yes or no)";
@@ -99,7 +96,7 @@ public class HeistStory {
     public String wifeOrBoxer(String wife){
         this.wife=wife;
         count++;
-        String wifeOrBoxer="";
+        String wifeOrBoxer;
         if(Objects.equals(wife,"yes")){
             wifeOrBoxer="BOOM! Wife is also dead. Her sister was also present.\nDo you kill her too?(input yes or no)";
         } else if(Objects.equals(wife,"no")){
@@ -154,7 +151,7 @@ public class HeistStory {
     //planner decisions
     public String planner(){
         String second="planner";
-        String task="";
+        String task;
         if(second.equals(outcome)){
             count++;
             task= "You picked the hardest task. You will plan the task. Where do you want to rob?\n\"bank\", \"museum\", \"rich person\"";
@@ -196,7 +193,7 @@ public class HeistStory {
     }
     public String spend(String affect){
         count++;
-        String decision="";
+        String decision;
         if(Objects.equals(affect,"friends")){
             decision="You will keep the "+outcome+" with you're friends."+"\n"+"Where will we store the "+outcome+"?\nYou're \"house\", a \"safe\", or in a money laundry \"business\"";
         } else if(Objects.equals(affect,"sell")){
@@ -216,7 +213,7 @@ public class HeistStory {
     }
     public String finalDecision(String finalD){
         count++;
-        String ultimate="";
+        String ultimate;
         if(finalD.equals("house")||finalD.equals("safe")||finalD.equals("business")){
             ultimate="Alright We have decided to store it in a "+finalD+"\nYou're work is done!";
         } else if(finalD.equals("pawn shop")||finalD.equals("friends")||finalD.equals("street")) {
@@ -262,7 +259,7 @@ public class HeistStory {
     }
     public String choiceHostage(String choice){
         count++;
-        String noOrYes="";
+        String noOrYes;
         if(choice.equals("yes")) {
             noOrYes="Alright. You have now taken a hostage captive. The banker has negotiated with you get the code to the vault\nYou grab all the money\nYou can chose to kill all the people and escape. yes or No?";
         } else if(choice.equals("no")){
@@ -274,7 +271,7 @@ public class HeistStory {
     }
     public String directionOption(String kill){
         count++;
-        String toBeKilled="";
+        String toBeKilled;
         if(kill.equals("yes")){
             toBeKilled="You have killed all the people and will now escape with everyone's money\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go \"left\",\"right\", or \"straight\"?";
 

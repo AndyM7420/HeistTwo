@@ -87,6 +87,10 @@ public class HeistStoryRunner {
                     System.out.println("guards or manager! bad spelling");
                     muscle = s.nextLine();
                 }
+                if(muscle.equals("manager")){
+                    System.out.println(user.firstKillChoice(muscle));
+                    System.out.println(user.toString());
+                } else{
                 System.out.println(user.firstKillChoice(muscle));
                 muscle = s.nextLine();
                 while (!muscle.equals("punch") && !muscle.equals("stab")) {
@@ -111,6 +115,6 @@ public class HeistStoryRunner {
             }
 
     }
-}
+}}
 
 
