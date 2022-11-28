@@ -1,8 +1,9 @@
 import java.util.Objects;
 
 public class HeistStory {
-    String outcome;
+      String outcome;
     int count;
+    String wife;
     String directions;
     int choice;
     public HeistStory(String outcome) {
@@ -62,7 +63,7 @@ public class HeistStory {
     public String theMuscle(){
         String second="muscle";
         String tasks="";
-        if(second.equals(outcome)&&checkPhrase(outcome,"muscle")){
+        if(second.equals(outcome)){
             count++;
             tasks= "You picked the muscle. you will go to the place with the robber. Will you take out the \"guards\" or the \"manager\"?";
         }  else {
@@ -72,12 +73,10 @@ public class HeistStory {
     }
     public String firstKillChoice(String person){
         String law="";
-        if(Objects.equals(person,"manager")&&checkPhrase(person,"manager")){
+        if(Objects.equals(person,"manager")){
             law="The guards take you out. Guess you should've taken out the guards first.";
-            person="die";
-            outcome=person;
-            return person;
-        } else  if(Objects.equals(person,"guards")&&checkPhrase(person,"guards")){
+            return law;
+        } else  if(Objects.equals(person,"guards")){
             law="you have gotten rid of the guards. You see a hostage move. Do you \"punch\" him or \"stab\" him?";
         } else {
             law="Wrong spelling. enter role again";
@@ -98,20 +97,59 @@ public class HeistStory {
         return punchOStab;
     }
     public String wifeOrBoxer(String wife){
+        this.wife=wife;
         count++;
         String wifeOrBoxer="";
-        if(Objects.equals(wife,"yes")&&checkPhrase(wife,"yes")){
+        if(Objects.equals(wife,"yes")){
             wifeOrBoxer="BOOM! Wife is also dead. Her sister was also present.\nDo you kill her too?(input yes or no)";
         } else if(Objects.equals(wife,"no")){
             wifeOrBoxer="Alr Wife is kept alive but the guys brother is here too.\nDo you kill him?(input yes or no)";
         } else if(Objects.equals(wife,"shoot")){
             wifeOrBoxer="LFG!He dies and you left bruised but fine\nAnother bystander calls you weak. Do you kill him?(input yes or no)";
         } else if(Objects.equals(wife,"fight")){
-            wifeOrBoxer="UH OH. The boxer overpowers. Thankfully the robber stabs him.Now you can choose to \"finish\"him off or save him?";
+            wifeOrBoxer="UH OH. The boxer overpowers. Thankfully the robber stabs him.Now you can choose to \"finish\"him off or \"save\" him?";
         } else{
             wifeOrBoxer="Wrong spelling. enter role again";
         }
         return wifeOrBoxer;
+    }
+    public String finalKill(String ultimateKill) {
+        String muscleDown = "";
+        if (wife.equals("shoot")) {
+            count++;
+            if (ultimateKill.equals("yes")) {
+                muscleDown = "You kill him and all the bystanders go silent\nYou have done you're job.\nThanks for your insight!";
+
+            } else if (ultimateKill.equals("no")) {
+                muscleDown = "The guy is unharmed but you kill another bystander to show off\nthe muscle has done their job";
+            }
+        } else if (wife.equals("yes")) {
+            count++;
+            if (ultimateKill.equals("yes")) {
+                muscleDown = "The sister is dead and everyone cries\nYou have done your job!";
+            } else if (ultimateKill.equals("no")) {
+                muscleDown = "The sister is kept alive but no one dares say anything\nCongrats on a job well done!";
+
+            }
+        } else if (wife.equals("no")) {
+            count++;
+            if (ultimateKill.equals("yes")) {
+                muscleDown = "The guys brother is dead.\nIf caught, everyone will testify in court\nYou're job is done!";
+            } else if (ultimateKill.equals("no")) {
+                muscleDown = "The guys brother is kept alive\nYou have done everything the muscle should";
+
+            }
+        } else if (wife.equals("fight")) {
+            count++;
+            if (ultimateKill.equals("finish")) {
+                muscleDown = "you finish him off and the robber claps for you\nYou're job is done";
+            }
+
+            if (ultimateKill.equals("save")) {
+                muscleDown="you save the guy and he provides you his money to live\nyou're job is done!";
+            }
+        }
+        return muscleDown;
     }
     //planner decisions
     public String planner(){
@@ -230,7 +268,7 @@ public class HeistStory {
         } else if(choice.equals("no")){
             noOrYes="Alright. You will not take a hostage. The banker thinks you're not intimidating enough\nHe calls the police and you go to prison";
         } else {
-           noOrYes= "Wrong spelling. enter role again";
+            noOrYes= "Wrong spelling. enter role again";
         }
         return noOrYes;
     }
@@ -289,15 +327,6 @@ public class HeistStory {
             future="Wrong spelling. enter role again";
         }
         return future;
-    }
-    public  boolean checkWord(String word){
-        if((word.equals("robber") || word.equals("planner") || word.equals("muscle") || word.equals("random"))){
-            return true;
-        }
-        return false;
-    }
-    public boolean checkPhrase(String inputWord, String actualWord){
-        return inputWord.equals(actualWord);
     }
 
     public String toString() {
