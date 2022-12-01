@@ -15,7 +15,7 @@ public class HeistStoryRunner {
         }
         HeistStory user = new HeistStory(outcomes);
         if (outcomes.equals("robber") || outcomes.equals("random")) {
-            System.out.println(user.role(outcomes));
+            System.out.println(user.role());
             robber = s.nextLine();
             while (!robber.equals("gun") && !robber.equals("machete")) {
                 System.out.println("Come on dude! BE serious. gun or machete");
@@ -53,7 +53,7 @@ public class HeistStoryRunner {
                 System.out.println(user.toString());
             }}
         if (Objects.equals(outcomes, "planner") || Objects.equals(outcomes, "random")) {
-            System.out.println(user.role(outcomes));
+            System.out.println(user.role());
             planner = s.nextLine();
             while (!planner.equals("bank") && !planner.equals("museum") && !planner.equals("rich person")) {
                 System.out.println("Who we robbing? bank, museum, or rich person!");
@@ -81,7 +81,7 @@ public class HeistStoryRunner {
             System.out.println(user.toString());
         }
         if (Objects.equals(outcomes, "muscle") || Objects.equals(outcomes, "random")) {
-                System.out.println(user.role(muscle));
+                System.out.println(user.role());
                 muscle = s.nextLine();
                 while (!muscle.equals("guards") && !muscle.equals("manager")) {
                     System.out.println("guards or manager! bad spelling");
@@ -89,7 +89,7 @@ public class HeistStoryRunner {
                 }
                 if(muscle.equals("manager")){
                     System.out.println(user.firstKillChoice(muscle));
-                    System.out.println(user.toString());
+                    System.out.println(user);
                 } else{
                 System.out.println(user.firstKillChoice(muscle));
                 muscle = s.nextLine();
@@ -110,7 +110,7 @@ public class HeistStoryRunner {
                     muscle=s.nextLine();
                 }
                 System.out.println(user.finalKill(muscle));
-                System.out.println(user.toString());
+                System.out.println(user);
 
             }
 

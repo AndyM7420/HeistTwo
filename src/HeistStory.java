@@ -1,15 +1,31 @@
 import java.util.Objects;
 
+/**
+ * The person class represents the user's role based on what they input. This person has an initial outcome, every decision has a count,
+ * and each method has a different output such as wife and directions
+ */
 public class HeistStory {
-      String outcome;
+    String outcome;
     int count;
     String wife;
     String directions;
     int choice;
+
+    /**
+     * Constructor for the HeistStory class. This sets the instance outcome to the given parameters
+     * @param outcome represents the role chosen by the user
+     */
     public HeistStory(String outcome) {
         this.outcome=outcome;
     }
-    public String role(String hello){
+
+    /**
+     * The role method will set each role to a numeric value from 1-4.
+     * Once the if statement checks which role chosen, it will call the needed method
+     *
+     * @return returns a method based on which role outcome is
+     */
+    public String role(){
         if ("random".equals(this.outcome)) {
             choice = 4;
             random(choice);
@@ -24,26 +40,15 @@ public class HeistStory {
             choice = 3;
             return theMuscle();
         }
-        return hello;
-    }
-    public String decisions(String decision){
-        if ("random".equals(this.outcome)) {
-            choice = 4;
-            random(choice);
-        }
-        if ("robber".equals(this.outcome)) {
-            choice = 1;
-            return robber();
-        } else if ("planner".equals(outcome)) {
-            choice = 2;
-            return planner();
-        } else if ("muscle".equals(outcome)) {
-            choice = 3;
-            return theMuscle();
-        }
-        return decision;
+        return "hi";
     }
 
+    /**
+     * random void method will help for the option of random. This will use Math.Random to pick a random role
+     * for the user. Once the role is chosen it will set outcome to whichever role is chosen.
+     * This is void as there is no return value needed
+     * @param random represents the number 4 as that is the number designated for the choice random
+     */
     private void random(int random){
         int four;
         if(random==4){
@@ -57,6 +62,12 @@ public class HeistStory {
             }
         }
     }
+
+    /**
+     * theMuscle method starts the first prompt for the role of the muscle. It starts the muscle's story and then asks a different question
+     * @return the string tasks is updated to the desired print statement to avoid using system.out.println
+     *
+     */
     public String theMuscle(){
         String second="muscle";
         String tasks;
@@ -68,9 +79,17 @@ public class HeistStory {
         }
         return tasks;
     }
+
+    /**
+     * The firstKillChoice method will continue the muscle story and either stops the story based on the option picked or
+     * continue the story with another prompt
+     * @param person string represents the user input of the choice asked based on the previous theMuscle method.
+     *               This string is then checked by an if statement is it equals 1 of the 2 options
+     * @return string law which is updated based on what option out of the two did the user pick
+     */
     public String firstKillChoice(String person){
         String law;
-        if(Objects.equals(person,"manager")){
+        if(person=="manager"){
             law="The guards take you out. Guess you should've taken out the guards first.";
             return law;
         } else  if(Objects.equals(person,"guards")){
@@ -80,6 +99,14 @@ public class HeistStory {
         }
         return law;
     }
+
+    /**
+     * The punchOrStab method continues the prompt from the previous method and will continue the story either way but
+     * the prompts is different based on the option chosen
+     * @param stab string represents the user input to chose from stab or punch. The input is checked, and then
+     *             it will output a different prompt
+     * @return punchOStab string which is updated with a different prompt based on the parameter stab.
+     */
     public String punchOrStab(String stab){
         String punchOStab;
         count++;
@@ -93,6 +120,12 @@ public class HeistStory {
         }
         return punchOStab;
     }
+
+    /**
+     * The wifeOrBoxer method follows the previous method in which the user chose to either target the wife or kick-boxer. This method continues the story
+     * @param wife string which represents the user answer for the previous method. It is then checked what it is equal to and then return a variable with a new prompt
+     * @return wifeOrBoxer string. This string hold the prompt that continues the story with a new decision
+     */
     public String wifeOrBoxer(String wife){
         this.wife=wife;
         count++;
@@ -110,6 +143,13 @@ public class HeistStory {
         }
         return wifeOrBoxer;
     }
+
+    /**
+     * The method finalKill is the final method for the story of the Muscle. This handles the most logic as it relies on not one but two different methods. This method uses
+     * the instance wife to know which of the two decisions from wifeOrBoxer did the user pick and then continues the story
+     * @param ultimateKill is the user input for this decision. It also relies on the other previous method
+     * @return String muscleDown which is set as "" but then updated if it fits one of the answer choices
+     */
     public String finalKill(String ultimateKill) {
         String muscleDown = "";
         if (wife.equals("shoot")) {
@@ -148,7 +188,11 @@ public class HeistStory {
         }
         return muscleDown;
     }
-    //planner decisions
+//planner decisions
+    /** no parameter method that simply start the prompts of the planner role
+     *
+     * @return task which simply returns the first planner prompt if outcome equals planner. Otherwise, it prints wrong spelling.
+     */
     public String planner(){
         String second="planner";
         String task;
@@ -160,6 +204,12 @@ public class HeistStory {
         }
         return task;
     }
+
+    /**planPlace method continues the first prompt by prompting the user to decide what they want to steal in the given location
+     *
+     * @param which String that is the place the user choose to plan to rob
+     * @return String decide which is assigned a different prompt based on the three options given to the user
+     */
     public String planPlace(String which){
         count++;
         String decide;
@@ -176,21 +226,33 @@ public class HeistStory {
         }
         return decide;
     }
+
+    /**handleMoney method continues the story by stating how we want to take care of the object/s picked by the user in the previous method.
+     *
+     * @param sneaky is the user input of the amount of stuff that the user wants from the desired robbing place
+     * @return String handle which the method checks which of the 9 choices they picked and then displays the next question by setting handle to that specific statement
+     */
     public String handleMoney(String sneaky){
         count++;
         outcome=sneaky;
-        String now;
+        String handle;
         if(Objects.equals(sneaky, "jewelry")||Objects.equals(sneaky,"shoes")|| Objects.equals(sneaky,"clothing")){
-            now="You've decided on "+sneaky+" Will you keep it among you're \"friends\" or \"sell\" it?";
+            handle="You've decided on "+sneaky+" Will you keep it among you're \"friends\" or \"sell\" it?";
         } else if(Objects.equals(sneaky, "15,000")||Objects.equals(sneaky,"22,500")|| Objects.equals(sneaky,"3,750")){
-            now="You've decided on "+sneaky+" Will you \"spread\" the money three ways or \"invest\"?";
+            handle="You've decided on "+sneaky+" Will you \"spread\" the money three ways or \"invest\"?";
         } else if(Objects.equals(sneaky, "fossils")||Objects.equals(sneaky,"paintings")|| Objects.equals(sneaky,"artifacts")){
-            now="You've decided on "+sneaky+" Will you \"thrift\" the item or sell it on the \"black market?\"";
+            handle="You've decided on "+sneaky+" Will you \"thrift\" the item or sell it on the \"black market?\"";
         } else {
-            now="Wrong spelling. enter role again";
+            handle="Wrong spelling. enter role again";
         }
-        return now;
+        return handle;
     }
+
+    /**spend method is what the user wants to proceed on spending/saving the money
+     *
+     * @param affect String which is vital to know the user's choice of the previous method which affects this method
+     * @return decision string that is changed based on the user input
+     */
     public String spend(String affect){
         count++;
         String decision;
@@ -211,6 +273,12 @@ public class HeistStory {
         }
         return decision;
     }
+
+    /**finalDecision ends the planner story and displays the final prompt for the user
+     *
+     * @param finalD string which is used to represent the ultimate decision that the user has decided on that will affect the end of the story
+     * @return ultimate string which displays the final print statement
+     */
     public String finalDecision(String finalD){
         count++;
         String ultimate;
@@ -235,6 +303,11 @@ public class HeistStory {
         return ultimate;
     }
     //ROBBER DECISIONS
+
+    /**robber method with no parameter that simply checks the desired user role and then starts the prompt of the robber role
+     *
+     * @return a direct statement that prompts the user to decide on something to continues the story
+     */
     private String robber(){
         String first = "robber";
         if(Objects.equals(first, outcome)){
@@ -245,6 +318,12 @@ public class HeistStory {
             return "Wrong spelling. enter role again";
         }
     }
+
+    /**
+     *gunOrMach method which answers the first robber question and directs the story based on that choice
+     * @param which string which builds on the first robber question by asking the user another question
+     * @return MoG string which is updated in the method with an if statement that checks which of the two options did the user pick
+     */
     public String gunOrMach(String which){
         count++;
         String MoG;
@@ -257,6 +336,13 @@ public class HeistStory {
         }
         return MoG;
     }
+
+    /**
+     * choiceHostage method which prompts the user to show the affect of whether to kill a hostage. This adds more on to the story
+     * @param choice string which contains the users choice of killing a hostage or not. Once this is checked it will ask a separate question
+     *               based on which if statement is true
+     * @return noOrYes string which will update based on the if statement
+     */
     public String choiceHostage(String choice){
         count++;
         String noOrYes;
@@ -326,6 +412,11 @@ public class HeistStory {
         return future;
     }
 
+    /**
+     * toString method is used to count the amount of decisions the user has done
+     * @return a print statement telling the user that the story is done.
+     * It also outputs the amount of decisions made
+     */
     public String toString() {
         return "End of Story.\nYou've made "+count+" decisions.";
     }}
