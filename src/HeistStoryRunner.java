@@ -2,7 +2,7 @@ import java.util.Objects;
 import java.util.Scanner;
 public class HeistStoryRunner {
     public static void main(String[] args) {
-        String muscle="";
+        String muscle;
         String robber;
         String planner;
         Scanner s = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class HeistStoryRunner {
             }
             if(robber.equals("machete")){
                 System.out.println(user.gunOrMach(robber));
-                System.out.println(user.toString());
+                System.out.println(user);
             } else {
                 System.out.println(user.gunOrMach(robber));
                 robber = s.nextLine();
@@ -50,7 +50,7 @@ public class HeistStoryRunner {
                     robber = s.nextLine();
                 }
                 System.out.println(user.choiceForFuture(robber));
-                System.out.println(user.toString());
+                System.out.println(user);
             }}
         if (Objects.equals(outcomes, "planner") || Objects.equals(outcomes, "random")) {
             System.out.println(user.role());
@@ -78,7 +78,7 @@ public class HeistStoryRunner {
                 planner = s.nextLine();
             }
             System.out.println(user.finalDecision(planner));
-            System.out.println(user.toString());
+            System.out.println(user);
         }
         if (Objects.equals(outcomes, "muscle") || Objects.equals(outcomes, "random")) {
                 System.out.println(user.role());

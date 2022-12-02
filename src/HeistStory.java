@@ -6,7 +6,7 @@ import java.util.Objects;
  */
 public class HeistStory {
     String outcome;
-    int count;
+    double numDecisions;
     String wife;
     String directions;
     int choice;
@@ -72,7 +72,7 @@ public class HeistStory {
         String second="muscle";
         String tasks;
         if(second.equals(outcome)){
-            count++;
+            numDecisions++;
             tasks= "You picked the muscle. you will go to the place with the robber. Will you take out the \"guards\" or the \"manager\"?";
         }  else {
             tasks="Wrong spelling. enter role again";
@@ -89,6 +89,7 @@ public class HeistStory {
      */
     public String firstKillChoice(String person){
         String law;
+        numDecisions++;
         if(person=="manager"){
             law="The guards take you out. Guess you should've taken out the guards first.";
             return law;
@@ -109,7 +110,7 @@ public class HeistStory {
      */
     public String punchOrStab(String stab){
         String punchOStab;
-        count++;
+        numDecisions++;
         if(Objects.equals(stab,"stab")){
             punchOStab="You stab him and he bleeds to death. Their wife was present do you kill her swell?.\n(input yes or no)";
         } else if(Objects.equals(stab,"punch")){
@@ -128,7 +129,7 @@ public class HeistStory {
      */
     public String wifeOrBoxer(String wife){
         this.wife=wife;
-        count++;
+        numDecisions++;
         String wifeOrBoxer;
         if(Objects.equals(wife,"yes")){
             wifeOrBoxer="BOOM! Wife is also dead. Her sister was also present.\nDo you kill her too?(input yes or no)";
@@ -151,9 +152,9 @@ public class HeistStory {
      * @return String muscleDown which is set as "" but then updated if it fits one of the answer choices
      */
     public String finalKill(String ultimateKill) {
-        String muscleDown = "";
+        String muscleDown="";
         if (wife.equals("shoot")) {
-            count++;
+            numDecisions++;
             if (ultimateKill.equals("yes")) {
                 muscleDown = "You kill him and all the bystanders go silent\nYou have done you're job.\nThanks for your insight!";
 
@@ -161,7 +162,7 @@ public class HeistStory {
                 muscleDown = "The guy is unharmed but you kill another bystander to show off\nthe muscle has done their job";
             }
         } else if (wife.equals("yes")) {
-            count++;
+            numDecisions++;
             if (ultimateKill.equals("yes")) {
                 muscleDown = "The sister is dead and everyone cries\nYou have done your job!";
             } else if (ultimateKill.equals("no")) {
@@ -169,7 +170,7 @@ public class HeistStory {
 
             }
         } else if (wife.equals("no")) {
-            count++;
+            numDecisions++;
             if (ultimateKill.equals("yes")) {
                 muscleDown = "The guys brother is dead.\nIf caught, everyone will testify in court\nYou're job is done!";
             } else if (ultimateKill.equals("no")) {
@@ -177,7 +178,7 @@ public class HeistStory {
 
             }
         } else if (wife.equals("fight")) {
-            count++;
+            numDecisions++;
             if (ultimateKill.equals("finish")) {
                 muscleDown = "you finish him off and the robber claps for you\nYou're job is done";
             }
@@ -197,7 +198,7 @@ public class HeistStory {
         String second="planner";
         String task;
         if(second.equals(outcome)){
-            count++;
+            numDecisions++;
             task= "You picked the hardest task. You will plan the task. Where do you want to rob?\n\"bank\", \"museum\", \"rich person\"";
         } else {
             task="Wrong spelling. enter role again";
@@ -211,7 +212,7 @@ public class HeistStory {
      * @return String decide which is assigned a different prompt based on the three options given to the user
      */
     public String planPlace(String which){
-        count++;
+        numDecisions++;
         String decide;
         if(Objects.equals(which, "bank")){
             decide="Bet. We will rob a bank. Now you have to decide how much money from the bank you want?\n\"15,000\" or \"22,500\" or \"3,750\"";
@@ -233,7 +234,7 @@ public class HeistStory {
      * @return String handle which the method checks which of the 9 choices they picked and then displays the next question by setting handle to that specific statement
      */
     public String handleMoney(String sneaky){
-        count++;
+        numDecisions++;
         outcome=sneaky;
         String handle;
         if(Objects.equals(sneaky, "jewelry")||Objects.equals(sneaky,"shoes")|| Objects.equals(sneaky,"clothing")){
@@ -254,7 +255,7 @@ public class HeistStory {
      * @return decision string that is changed based on the user input
      */
     public String spend(String affect){
-        count++;
+        numDecisions++;
         String decision;
         if(Objects.equals(affect,"friends")){
             decision="You will keep the "+outcome+" with you're friends."+"\n"+"Where will we store the "+outcome+"?\nYou're \"house\", a \"safe\", or in a money laundry \"business\"";
@@ -280,7 +281,7 @@ public class HeistStory {
      * @return ultimate string which displays the final print statement
      */
     public String finalDecision(String finalD){
-        count++;
+        numDecisions++;
         String ultimate;
         if(finalD.equals("house")||finalD.equals("safe")||finalD.equals("business")){
             ultimate="Alright We have decided to store it in a "+finalD+"\nYou're work is done!";
@@ -311,7 +312,7 @@ public class HeistStory {
     private String robber(){
         String first = "robber";
         if(Objects.equals(first, outcome)){
-            count++;
+            numDecisions++;
             return "You and your friends are in the car. As you are ready to leave, you can choose between a \"machete\" or a \"gun\". Which one do you pick?";
 
         } else {
@@ -325,7 +326,7 @@ public class HeistStory {
      * @return MoG string which is updated in the method with an if statement that checks which of the two options did the user pick
      */
     public String gunOrMach(String which){
-        count++;
+        numDecisions++;
         String MoG;
         if(which.equals("gun")){
             MoG= "Gun it is! Now you enter the bank and yell \"Everybody Down!\"\nYou can use the gun to hold a hostage. Do you want to hold a hostage";
@@ -340,11 +341,11 @@ public class HeistStory {
     /**
      * choiceHostage method which prompts the user to show the affect of whether to kill a hostage. This adds more on to the story
      * @param choice string which contains the users choice of killing a hostage or not. Once this is checked it will ask a separate question
-     *               based on which if statement is true
+     *               based on which statement is true
      * @return noOrYes string which will update based on the if statement
      */
     public String choiceHostage(String choice){
-        count++;
+        numDecisions++;
         String noOrYes;
         if(choice.equals("yes")) {
             noOrYes="Alright. You have now taken a hostage captive. The banker has negotiated with you get the code to the vault\nYou grab all the money\nYou can chose to kill all the people and escape. yes or No?";
@@ -355,21 +356,33 @@ public class HeistStory {
         }
         return noOrYes;
     }
+
+    /**
+     * directionOption method which displays the driving option that the robber must pick
+     * @param kill string which represents the users decision to kill/not kill everyone
+     * @return toBeKilled which returns a different prompt seperate to what the string kill is set to
+     */
     public String directionOption(String kill){
-        count++;
+        numDecisions++;
         String toBeKilled;
-        if(kill.equals("yes")){
+        if(kill=="yes"){
             toBeKilled="You have killed all the people and will now escape with everyone's money\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go \"left\",\"right\", or \"straight\"?";
 
-        } else if(kill.equals("no")) {
+        } else if(kill=="no") {
             toBeKilled="You will leave without killing anyone and escape\nLittle do you know a bystander had a phone and was calling the police\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go \"left\",\"right\", or \"straight\"?";
         } else {
             toBeKilled="Wrong spelling. enter role again";
         }
         return toBeKilled;
     }
+
+    /**
+     * caught method which returns the last question for the robber story that will end the story
+     * @param direct string which represents the user input that answers the previous prompted question
+     * @return leftsRight string which is updated using switch that checks if parameter direct is equal to either left, straight, or right
+     */
     public String caught(String direct){
-        count++;
+        numDecisions++;
         directions=direct;
         String leftSRight;
         leftSRight = switch (direct) {
@@ -382,34 +395,40 @@ public class HeistStory {
         };
         return leftSRight;
     }
+
+    /**
+     * choiceForFuture method is the final part of the robber story that will show the future of the whole group of robbers
+     * @param choice string which the user input of the very last question that the user must answer to show the end of the story
+     * @return future string which is used to represent the prompt given based on which direction given and describes the future of the robber group.
+     */
     public String choiceForFuture(String choice){
-        count++;
-        String future="";
+        numDecisions++;
+        String futurerobber="";
         if(directions.equals("left")){
             if(choice.equals("yes")){
-                future="The cops now will take you to trial. You will be sentenced to 10 years in prison.\nHowever once out you're friends have left some money for you and plan to rob another place";
+                futurerobber="The cops now will take you to trial. You will be sentenced to 10 years in prison.\nHowever once out you're friends have left some money for you and plan to rob another place";
             }
             if(choice.equals("no")){
-                future="The cops will take all of you to trial. All of you besides the driver are sentenced to 10+ years. Once out all of you have separated and become poor.";
+                futurerobber="The cops will take all of you to trial. All of you besides the driver are sentenced to 10+ years. Once out all of you have separated and become poor.";
             }
         } else if(directions.equals("straight")){
             if(choice.equals("hide")){
-                future="The cops found you and have sentenced all of you to 10+ years.";
+                futurerobber="The cops found you and have sentenced all of you to 10+ years.";
             }
             if(choice.equals("steal")){
-                future="You find another car and continue to be on the lamb for years.\nYou find a place to stay and all of you're friends go their separate ways.";
+                futurerobber="You find another car and continue to be on the lamb for years.\nYou find a place to stay and all of you're friends go their separate ways.";
             }
         } else if(directions.equals("right")){
             if(choice.equals("stay")){
-                future="the cops have found you because you were a lazy pig.";
+                futurerobber="the cops have found you because you were a lazy pig.";
             }
             if(choice.equals("country")){
-                future="the cops never find you but you and your friends plan another heist.\nThis country has better police and you are found.";
+                futurerobber="the cops never find you but you and your friends plan another heist.\nThis country has better police and you are found.";
             }
         } else {
-            future="Wrong spelling. enter role again";
+            futurerobber="Wrong spelling. enter role again";
         }
-        return future;
+        return futurerobber;
     }
 
     /**
@@ -418,5 +437,5 @@ public class HeistStory {
      * It also outputs the amount of decisions made
      */
     public String toString() {
-        return "End of Story.\nYou've made "+count+" decisions.";
+        return "End of Story.\nYou've made "+numDecisions+" decisions.";
     }}
