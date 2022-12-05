@@ -16,7 +16,12 @@ public class HeistStory {
      * @param outcome represents the role chosen by the user
      */
     public HeistStory(String outcome) {
+
         this.outcome=outcome;
+        numDecisions=0;
+        wife="";
+        directions="";
+        choice=0;
     }
 
     /**
@@ -90,13 +95,13 @@ public class HeistStory {
     public String firstKillChoice(String person){
         String law;
         numDecisions++;
-        if(person=="manager"){
+        if(Objects.equals(person, "manager")){
             law="The guards take you out. Guess you should've taken out the guards first.";
             return law;
         } else  if(Objects.equals(person,"guards")){
             law="you have gotten rid of the guards. You see a hostage move. Do you \"punch\" him or \"stab\" him?";
         } else {
-            law="Wrong spelling. enter role again";
+            law="The guards take you out. Guess you should've taken out the guards first.";
         }
         return law;
     }
@@ -288,7 +293,7 @@ public class HeistStory {
         } else if(finalD.equals("pawn shop")||finalD.equals("friends")||finalD.equals("street")) {
             ultimate="We will sell it to "+finalD+"\nThanks for the hard work. U are done planning.";
         } else if(finalD.equals("robber")||finalD.equals("planner")||finalD.equals("muscle")){
-            if(finalD.equals("robber")){
+            if(finalD.equals("planner")){
                 ultimate="Correct. You're the smartest and should hold it"+"\nYou are done planning!";
             } else {
                 ultimate="Alright we will give it to the "+finalD+"\nEven though it makes sense for the planner to get it.\nThanks for planning the heist";
@@ -365,10 +370,10 @@ public class HeistStory {
     public String directionOption(String kill){
         numDecisions++;
         String toBeKilled;
-        if(kill=="yes"){
+        if(Objects.equals(kill, "yes")){
             toBeKilled="You have killed all the people and will now escape with everyone's money\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go \"left\",\"right\", or \"straight\"?";
 
-        } else if(kill=="no") {
+        } else if(Objects.equals(kill, "no")) {
             toBeKilled="You will leave without killing anyone and escape\nLittle do you know a bystander had a phone and was calling the police\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go \"left\",\"right\", or \"straight\"?";
         } else {
             toBeKilled="Wrong spelling. enter role again";
